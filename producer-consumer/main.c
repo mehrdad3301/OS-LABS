@@ -27,7 +27,7 @@ void *produce(void *arg)
 		pthread_mutex_lock(&bufferMutex);
 		buffer[idx] = r ; 
 		idx ++ ; 
-		printf("producer %d wrote %d to the buffer\n", *id, r) ;
+		printf("producer %d\n", r) ;
 		pthread_mutex_unlock(&bufferMutex);
 		sem_post(&semFull) ; 
 	}
@@ -40,8 +40,8 @@ void *consume(void *arg)
 	{ 
 		sem_wait(&semFull) ; 
 		pthread_mutex_lock(&bufferMutex);
-		idx -- ; 
-		printf("consumer %d read %d from the buffer\n", *id, buffer[idx]) ; 
+		idx -- ;
+		printf("consumer %d\n", buffer[idx]) ; 
 		pthread_mutex_unlock(&bufferMutex);
 		sem_post(&semEmpty) ; 
 	}
