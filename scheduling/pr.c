@@ -86,12 +86,12 @@ pr_scheduling(int nprocs)
 		while( elapsed_time < procs[j].at ) { 
 			struct proc *p = peek(queue) ; 
 			p->rt += 1 ;  
+			elapsed_time += 1 ; //TODO: omit incrementing by 1
 			if (p->rt == p->bt) { 
 				p->tt = elapsed_time - p->at ; 
 				p->wt = p->tt - p->bt ; 
 				dequeue(queue) ; 
 			}
-			elapsed_time += 1 ; //TODO: omit incrementing by 1
 		}
 		i = j; 
 	}
