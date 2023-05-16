@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include "priority_queue.h"
 
-PriorityQueue *createPriorityQueue(size_t capacity) {
+PriorityQueue *
+createPriorityQueue(size_t capacity) 
+{
     PriorityQueue *queue = malloc(sizeof(PriorityQueue));
     queue->array = malloc(capacity * sizeof(void *));
     queue->priority = malloc(capacity * sizeof(int));
@@ -11,7 +13,9 @@ PriorityQueue *createPriorityQueue(size_t capacity) {
     return queue;
 }
 
-int isEmpty(PriorityQueue *queue) {
+int 
+isEmpty(PriorityQueue *queue) 
+{
     return queue->size == 0;
 }
 
@@ -19,7 +23,9 @@ int isFull(PriorityQueue *queue) {
     return queue->size == queue->capacity;
 }
 
-void swap(void **array, int *priority, int i, int j) {
+void 
+swap(void **array, int *priority, int i, int j) 
+{
     void *temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -28,7 +34,9 @@ void swap(void **array, int *priority, int i, int j) {
     priority[j] = temp_priority;
 }
 
-void bubbleUp(void **array, int *priority, int index) {
+void 
+bubbleUp(void **array, int *priority, int index) 
+{
     while (index > 0) {
         int parent = (index - 1) / 2;
         if (priority[index] <= priority[parent]) {
@@ -39,7 +47,9 @@ void bubbleUp(void **array, int *priority, int index) {
     }
 }
 
-void bubbleDown(void **array, int *priority, int index, int size) {
+void 
+bubbleDown(void **array, int *priority, int index, int size) 
+{
     while (index * 2 + 1 < size) {
         int leftChild = index * 2 + 1;
         int rightChild = index * 2 + 2;
@@ -55,7 +65,9 @@ void bubbleDown(void **array, int *priority, int index, int size) {
     }
 }
 
-void enqueue(PriorityQueue *queue, void *item, int priority) {
+void 
+enqueue(PriorityQueue *queue, void *item, int priority) 
+{
     if (isFull(queue)) {
         printf("Priority queue is full.\n");
         return;
@@ -66,7 +78,9 @@ void enqueue(PriorityQueue *queue, void *item, int priority) {
     bubbleUp(queue->array, queue->priority, queue->size - 1);
 }
 
-void *dequeue(PriorityQueue *queue) {
+void *
+dequeue(PriorityQueue *queue) 
+{
     if (isEmpty(queue)) {
         printf("Priority queue is empty.\n");
         return NULL;
@@ -79,12 +93,16 @@ void *dequeue(PriorityQueue *queue) {
     return item;
 }
 
-void freePriorityQueue(PriorityQueue *queue) {
+void 
+freePriorityQueue(PriorityQueue *queue) 
+{
     free(queue->array);
     free(queue->priority);
     free(queue);
 }
-void *peek(PriorityQueue *queue) {
+void 
+*peek(PriorityQueue *queue) 
+{
     if (isEmpty(queue)) {
         printf("Priority queue is empty.\n");
         return NULL;

@@ -22,7 +22,8 @@ struct proc {
 struct proc procs[MAX_PROC] ; 
 float quantum ; 
 
-void print_stats(int nprocs) { 
+void  
+print_stats(int nprocs) { 
 
 	float tt, wt; 
 	tt = wt = 0; 
